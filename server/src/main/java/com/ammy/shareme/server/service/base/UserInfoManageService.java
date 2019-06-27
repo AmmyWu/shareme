@@ -10,5 +10,5 @@ public interface UserInfoManageService {
     public JsonObjectEx login(String account,String password);
     public JsonObjectEx readUserInfo(Integer userid);
     public JsonObjectEx editUserInfo(UserInfo userInfo);
-    public List<UserInfo> SearchUser(String name);
+    public JsonObjectEx SearchUser(String name);
 }

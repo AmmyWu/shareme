@@ -8,11 +8,10 @@ import com.ammy.shareme.server.service.base.UserInfoManageService;
 import com.ammy.shareme.server.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.provider.MD5;
 
 import java.util.List;
 
-@Service("userInfoManageService")
+@Service
 public class UserInfoManageServiceImpl implements UserInfoManageService {
 
     @Autowired
@@ -22,7 +21,9 @@ public class UserInfoManageServiceImpl implements UserInfoManageService {
     public JsonObjectEx register(String account, String password, String verifyPassword) {
         if(!password.equals(verifyPassword))
             return new JsonObjectEx("two password are different and can not create the account");
-        UserInfo userInfo = new UserInfo(account,password);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setAccount(account);
+        userInfo.setPassword(password);
         insert(userInfo);
         return new JsonObjectEx("register success!",userInfo);
     }
@@ -43,8 +44,10 @@ public class UserInfoManageServiceImpl implements UserInfoManageService {
     public JsonObjectEx readUserInfo(Integer userid) {
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andUserIdEqualTo(userid);
-        userInfoMapper.selectByExample(userInfoExample);
-        return null;
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
+        if(userInfos.size() == 0)
+            return new JsonObjectEx("there is no such person");
+        return new JsonObjectEx("can read the user info",userInfos.get(0));
     }
 
     @Override
@@ -52,12 +55,14 @@ public class UserInfoManageServiceImpl implements UserInfoManageService {
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andUserIdEqualTo(userInfo.getUserId());
         update(userInfo,userInfoExample);
-        return null;
+        return new JsonObjectEx("edit success!",userInfo);
     }
 
     @Override
-    public List<UserInfo> SearchUser(String name) {
-        return null;
+    public JsonObjectEx SearchUser(String name) {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        userInfoExample.createCriteria().andUsernameLikeInsensitive(name);
+        return new JsonObjectEx("search success",userInfoMapper.selectByExample(userInfoExample));
     }
 
     public void insert(UserInfo userInfo) {
@@ -66,5 +71,9 @@ public class UserInfoManageServiceImpl implements UserInfoManageService {
 
     public void update(UserInfo userInfo,UserInfoExample example){
         userInfoMapper.updateByExample(userInfo,example);
+    }
+
+    public void delete(Integer userid){
+        userInfoMapper.deleteByPrimaryKey(userid);
     }
 }
