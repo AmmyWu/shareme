@@ -1,13 +1,16 @@
 package com.ammy.shareme.server.controller.base;
 
 import com.ammy.shareme.server.dao.JsonObjectEx;
+import com.ammy.shareme.server.dao.model.UserInfo;
 import com.ammy.shareme.server.service.base.UserInfoManageService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@ResponseBody
 @RequestMapping("userInfoManage")
 public class UserInfoManage {
 
@@ -48,7 +51,6 @@ public class UserInfoManage {
     public JsonObjectEx editUserInfo(HttpServletRequest request){
 
         Object key = request.getParameter("key");
-        key.
-        return  userInfoManageService.editUserInfo()
+        return  userInfoManageService.editUserInfo((UserInfo) key);
     }
 }
