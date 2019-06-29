@@ -80,6 +80,10 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+          <mainClass>com.ammy.shareme.server.ServerApplication</mainClass>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.mybatis.generator</groupId>
@@ -91,5 +95,6 @@
       </plugin>
     </plugins>
   </build>
+
 
 </project>

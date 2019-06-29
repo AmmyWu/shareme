@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "constconfig",
+      "type": "com.ammy.shareme.server.util.ConstConfig",
+      "sourceType": "com.ammy.shareme.server.util.ConstConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "constconfig.error-message",
+      "type": "java.util.Map<java.lang.Integer,java.lang.String>",
+      "sourceType": "com.ammy.shareme.server.util.ConstConfig"
+    }
+  ],
+  "hints": []
+}

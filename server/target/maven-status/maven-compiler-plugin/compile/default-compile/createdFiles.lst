@@ -1,0 +1,15 @@
+META-INF/spring-configuration-metadata.json
+com/ammy/shareme/server/service/impl/base/UserInfoManageServiceImpl.class
+com/ammy/shareme/server/dao/mapper/UserInfoMapper.class
+com/ammy/shareme/server/service/base/UserInfoManageService.class
+com/ammy/shareme/server/ErrorCollection.class
+com/ammy/shareme/server/util/ConstConfig.class
+com/ammy/shareme/server/dao/model/UserInfoExample$GeneratedCriteria.class
+com/ammy/shareme/server/dao/JsonObjectEx.class
+com/ammy/shareme/server/dao/model/UserInfoExample$Criterion.class
+com/ammy/shareme/server/dao/model/UserInfo.class
+com/ammy/shareme/server/dao/model/UserInfoExample.class
+com/ammy/shareme/server/controller/base/UserInfoManage.class
+com/ammy/shareme/server/ServerApplication.class
+com/ammy/shareme/server/util/MD5Util.class
+com/ammy/shareme/server/dao/model/UserInfoExample$Criteria.class
