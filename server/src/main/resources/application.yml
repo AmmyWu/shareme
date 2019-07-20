@@ -8,3 +8,6 @@ spring:
 constconfig:
   error-message:
     0: loginError
+mybatis:
+  mapper-locations: /mapper/*.xml
+  type-aliases-package: com.ammy.shareme.server.dao.mapper

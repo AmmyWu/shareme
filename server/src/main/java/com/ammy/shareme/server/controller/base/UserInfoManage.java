@@ -3,6 +3,11 @@ package com.ammy.shareme.server.controller.base;
 import com.ammy.shareme.server.dao.JsonObjectEx;
 import com.ammy.shareme.server.dao.model.UserInfo;
 import com.ammy.shareme.server.service.base.UserInfoManageService;
+import com.google.gson.Gson;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +28,21 @@ public class UserInfoManage {
     }
 
     @RequestMapping("/login")
-    public JsonObjectEx login(HttpServletRequest request) {
-        String account = request.getParameter("account");
-        String password = request.getParameter("password");
+    public JsonObjectEx login(HttpServletRequest request) throws IOException {
+        Gson gson = new Gson();
+        Map map = gson.fromJson(request.getReader(),Map.class);
+        String account = (String) map.get("account");
+        String password = (String) map.get("password");
         return userInfoManageService.login(account, password);
     }
 
     @RequestMapping("/register")
-    public JsonObjectEx register(HttpServletRequest request) {
-        String account = request.getParameter("account");
-        String password = request.getParameter("password");
-        String verifyPassword = request.getParameter("verifyPassword");
+    public JsonObjectEx register(HttpServletRequest request) throws IOException {
+        Gson gson = new Gson();
+        Map map = gson.fromJson(request.getReader(),Map.class);
+        String account = (String) map.get("account");
+        String password = (String) map.get("password");
+        String verifyPassword = (String) map.get("verifyPassword");
         return userInfoManageService.register(account, password, verifyPassword);
     }
 
