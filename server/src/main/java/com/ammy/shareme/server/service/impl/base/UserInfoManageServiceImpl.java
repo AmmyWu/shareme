@@ -23,7 +23,8 @@ public class UserInfoManageServiceImpl implements UserInfoManageService {
             return new JsonObjectEx("two password are different and can not create the account");
         UserInfo userInfo = new UserInfo();
         userInfo.setAccount(account);
-        userInfo.setPassword(password);
+        String mdPassword = MD5Util.getMD5(password);
+        userInfo.setPassword(mdPassword);
         insert(userInfo);
         return new JsonObjectEx("register success!",userInfo);
     }
