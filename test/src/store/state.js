@@ -2,5 +2,8 @@
 状态对象
 */
 export default{
-    homeList:""
+    homeList:"",
+    account:'',
+    password:'',
+    verifyPassword:''
 }

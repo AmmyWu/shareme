@@ -3,7 +3,7 @@
 */
 
 
-import {HOMEPAGE_LIST} from "./mutations-types"
+import {HOMEPAGE_LIST,REQUEST_REGISTER} from "./mutations-types"
 import { Notification } from 'element-ui';
 export default{
    [HOMEPAGE_LIST] (state,{homeList}){
@@ -14,5 +14,14 @@ export default{
         type: 'success',
         duration:2000
       });
-   }
+   },
+   [REQUEST_REGISTER] (state,{homeList}){
+      state.homeList = homeList
+      Notification({
+       title: '成功',
+       message: '注册成功',
+       type: 'success',
+       duration:2000
+     });
+  }
 }

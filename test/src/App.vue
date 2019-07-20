@@ -18,7 +18,7 @@ export default {
   },
   mounted(){
     // test()
-    this.$store.dispatch('addList')
+    // this.$store.dispatch('addList')
      
   }
 }
