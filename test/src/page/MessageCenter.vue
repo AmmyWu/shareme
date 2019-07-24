@@ -1,16 +1,11 @@
 <template>
   <div class="hello">
-    <Header></Header>
-    <div class="content">
-        <transition name="fade">
-            <router-view/>
-        </transition>
-    </div>
+       消息中心
   </div>
 </template>
 
 <script>
-import Header from '../components/Header'
+// import Header from '../components/Header'
 export default {
   name: 'Home',
   data () {
@@ -18,9 +13,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components:{
-    Header
-  }
+  components:{}
 }
 </script>
 
@@ -47,17 +40,4 @@ a {
 
 
 
-.fade-enter {
-  opacity:0;
-}
-.fade-leave{
-  opacity:1;
-}
-.fade-enter-active{
-  transition:opacity .5s;
-}
-.fade-leave-active{
-  opacity:0;
-  transition:opacity .5s;
-}
 </style>

@@ -21,3 +21,21 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+// 导航守卫
+// 参数1 : to 目标路由对象
+// 参数2 : from 来源路由对象
+// 参数3 : next() 下一步
+router.beforeEach((to, from, next) => {
+  // 1. 判断是不是登录页面
+  // 是登录/注册页面
+  if (to.path === '/login') {
+    next()
+  } else {
+    // 不是登录/注册页面
+    // 2. 判断 是否登录过
+    let user = localStorage.getItem('user')
+    user ? next() : next('/login')
+  }
+})

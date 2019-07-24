@@ -10,7 +10,7 @@
                 <el-input type="password" placeholder="请输入密码" v-model="loginForm.password" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="login('loginForm')">提交</el-button>
+                <el-button type="primary" @click="login('loginForm')">登录</el-button>
                 <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
               </el-form-item>
           </el-form>
@@ -62,6 +62,8 @@
 // export {test} from '../api'
 import {register,login} from "../api"
 import {mapState} from 'vuex'
+import { Message } from 'element-ui'
+
 export default {
   name: 'Login',
   async mounted(){
@@ -131,12 +133,20 @@ export default {
     },
     // 注册
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      var _this = this;
+      _this.$refs[formName].validate((valid) => {
         if (valid) {
           let data = this.ruleForm
           register(data)
-          .then(function(){
-
+          .then(function(res){
+            if(res.statusCode === 0){
+              Message.success(res.message);
+              // 获取用户
+              localStorage.setItem('user', res.data)
+              _this.$router.push('/home')
+             }else{
+               Message.error(res.message);
+             }
           },function(){
             // this.$message.error('错了哦，这是一条错误消息');
           })
@@ -148,12 +158,21 @@ export default {
     },
     // 登录
     login(formName){
-      this.$refs[formName].validate((valid) => {
+      var _this = this;
+      _this.$refs[formName].validate((valid) => {
         if (valid) {
-          let data = this.loginForm
+          let data = _this.loginForm
           login(data)
-          .then(function(){
+          .then(function(res){
+             if(res.statusCode === 0){
+              Message.success(res.message);
 
+              // 获取用户
+              localStorage.setItem('user', res.data)
+              _this.$router.push('/home')
+             }else{
+               Message.error(res.message);
+             }
           },function(){
             // this.$message.error('错了哦，这是一条错误消息');
           })
