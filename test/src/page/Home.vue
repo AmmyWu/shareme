@@ -2,7 +2,7 @@
   <div class="hello">
     <Header></Header>
     <div class="content">
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
             <router-view/>
         </transition>
     </div>
